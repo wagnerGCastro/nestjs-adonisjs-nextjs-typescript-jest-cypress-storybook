@@ -36,12 +36,7 @@ type Action =
       data: MODAL_DATA;
     };
 
-type MODAL_VIEWS =
-  | "SIGNUP_VIEW"
-  | "LOGIN_VIEW"
-  | "FORGOT_VIEW"
-  | "DELETE_PRODUCT"
-  | "BAN_CUSTOMER";
+type MODAL_VIEWS = "SIGNUP_VIEW" | "LOGIN_VIEW" | "FORGOT_VIEW" | "DELETE_PRODUCT" | "BAN_CUSTOMER";
 type MODAL_DATA = any;
 
 export const UIContext = React.createContext<State | any>(initialState);
@@ -89,25 +84,20 @@ function uiReducer(state: State, action: Action) {
   }
 }
 
-export const UIProvider: FC = (props) => {
+export const UIProvider: FC = props => {
   const [state, dispatch] = React.useReducer(uiReducer, initialState);
 
   const openSidebar = () => dispatch({ type: "OPEN_SIDEBAR" });
   const closeSidebar = () => dispatch({ type: "CLOSE_SIDEBAR" });
   const toggleSidebar = () =>
-    state.displaySidebar
-      ? dispatch({ type: "CLOSE_SIDEBAR" })
-      : dispatch({ type: "OPEN_SIDEBAR" });
-  const closeSidebarIfPresent = () =>
-    state.displaySidebar && dispatch({ type: "CLOSE_SIDEBAR" });
+    state.displaySidebar ? dispatch({ type: "CLOSE_SIDEBAR" }) : dispatch({ type: "OPEN_SIDEBAR" });
+  const closeSidebarIfPresent = () => state.displaySidebar && dispatch({ type: "CLOSE_SIDEBAR" });
 
   const openModal = () => dispatch({ type: "OPEN_MODAL" });
   const closeModal = () => dispatch({ type: "CLOSE_MODAL" });
 
-  const setModalView = (view: MODAL_VIEWS) =>
-    dispatch({ type: "SET_MODAL_VIEW", view });
-  const setModalData = (data: MODAL_DATA) =>
-    dispatch({ type: "SET_MODAL_DATA", data });
+  const setModalView = (view: MODAL_VIEWS) => dispatch({ type: "SET_MODAL_VIEW", view });
+  const setModalData = (data: MODAL_DATA) => dispatch({ type: "SET_MODAL_DATA", data });
 
   const value = useMemo(
     () => ({
@@ -121,7 +111,7 @@ export const UIProvider: FC = (props) => {
       setModalView,
       setModalData,
     }),
-    [state]
+    [state],
   );
 
   return <UIContext.Provider value={value} {...props} />;
@@ -134,4 +124,3 @@ export const useUI = () => {
   }
   return context;
 };
-
