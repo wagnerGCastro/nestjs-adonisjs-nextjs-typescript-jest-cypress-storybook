@@ -19,6 +19,7 @@ export default function LoginPage() {
   if (isAuthenticated({ token, permissions })) {
     router.replace(ROUTES.DASHBOARD);
   }
+
   const { t } = useTranslation("common");
   return (
     <div className="flex items-center justify-center h-screen bg-light sm:bg-gray-100">
