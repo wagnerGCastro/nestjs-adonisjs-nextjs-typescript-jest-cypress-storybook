@@ -1,6 +1,6 @@
 import React from "react";
 import { mount } from "enzyme";
-import Home from "../../src/pages/home";
+import Home from "@/pages/home";
 
 describe("Pages", () => {
   describe("Home", () => {
