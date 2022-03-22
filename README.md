@@ -5,7 +5,5 @@
 
   # ecommerce
 
-  # Mysql >= 5.7 version
-
 
 

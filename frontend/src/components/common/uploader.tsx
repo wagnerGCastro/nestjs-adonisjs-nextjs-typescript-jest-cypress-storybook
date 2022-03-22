@@ -5,7 +5,7 @@ import { Attachment } from "@ts-types/generated";
 import { CloseIcon } from "@components/icons/close-icon";
 import Loader from "@components/ui/loader/loader";
 import { useTranslation } from "next-i18next";
-import { useUploadMutation } from "@services/upload/use-upload.mutation";
+import { useUploadMutation } from "@data/upload/use-upload.mutation";
 
 const getPreviewImage = (value: any) => {
   let images: any[] = [];

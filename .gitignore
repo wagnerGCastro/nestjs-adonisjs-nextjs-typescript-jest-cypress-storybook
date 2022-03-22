@@ -1,4 +1,7 @@
+node_modules
 /node_modules
+_node_modules
+__node_modules
 /public/hot
 /public/storage
 /storage/*.key
@@ -14,9 +17,41 @@ _backend-api
 _frontend-vue
 nuxt-typescript-vuetify
 
-.docker/workspace-frontend
-.docker/workspace-ecommerce
-.docker/workspace-backend
+
+
+
+/docker-compose.stage.yml
 
 /doc.txt
 
+
+
+#### DOCKER
+.docker/workspace-frontend
+.docker/workspace-ecommerce
+.docker/workspace-backend
+.docker/laradock
+
+.docker/logs/redis
+!.docker/logs/redis/.gitkeep
+
+.docker/logs/mysql
+!.docker/logs/mysql/.gitkeep
+
+.docker/logs/mongo
+!.docker/logs/mongo/.gitkeep
+
+.docker/logs/sqlite
+!.docker/logs/sqlite/.gitkeep
+
+.docker/data/redis
+!.docker/data/redis/.gitkeep
+
+.docker/data/mysql
+!.docker/data/mysql/.gitkeep
+
+.docker/data/mongo
+!.docker/data/mongo/.gitkeep
+
+.docker/data/sqlite
+!.docker/data/sqlite/.gitkeep

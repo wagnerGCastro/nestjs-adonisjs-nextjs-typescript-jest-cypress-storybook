@@ -14,7 +14,7 @@ import Label from "@components/ui/label";
 import { CURRENCY } from "./currency";
 import { siteSettings } from "@settings/site.settings";
 import ValidationError from "@components/ui/form-validation-error";
-import { useUpdateSettingsMutation } from "@services/settings/use-settings-update.mutation";
+import { useUpdateSettingsMutation } from "@data/settings/use-settings-update.mutation";
 import { useTranslation } from "next-i18next";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { settingsValidationSchema } from "./settings-validation-schema";
