@@ -16,8 +16,8 @@ module.exports = {
       statements: 100,
     },
   },
-  setupFiles: ["<rootDir>/.jest/setupFiles.ts"],
-  setupFilesAfterEnv: ["<rootDir>/.jest/setupFilesAfterEnv.ts"],
+  setupFiles: ["<rootDir>/.jest/setupFiles.js"],
+  setupFilesAfterEnv: ["<rootDir>/.jest/setupFilesAfterEnv.js"],
   preset: "ts-jest",
   testPathIgnorePatterns: [
     "/.next/",
@@ -47,6 +47,22 @@ module.exports = {
   },
   transform: {
     ".(ts|tsx)": "babel-jest",
+    "^.+\\.(js|jsx)$": "babel-jest",
+    // "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$":
+    //   "<rootDir>/__mocks__/file.js",
   },
   transformIgnorePatterns: ["<rootDir>/node_modules/"],
+  globals: {
+    "ts-jest": {
+      tsconfig: {
+        jsx: "preserve",
+      },
+      isolatedModules: false,
+      babelConfig: {
+        presets: ["next/babel"],
+        // plugins: ["macros"],
+      },
+    },
+  },
+  // moduleDirectories: ["node_modules", "src"],
 };
