@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import Button from "@components/ui/button";
 import Description from "@components/ui/description";
 import Card from "@components/common/card";
-import { useUpdateUserMutation } from "@services/user/use-user-update.mutation";
+import { useUpdateUserMutation } from "@data/user/use-user-update.mutation";
 import TextArea from "@components/ui/text-area";
 import { useTranslation } from "next-i18next";
 import FileInput from "@components/ui/file-input";
