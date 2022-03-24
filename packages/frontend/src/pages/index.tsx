@@ -9,7 +9,7 @@ import {
 } from "@utils/auth-utils";
 import { SUPER_ADMIN } from "@utils/constants";
 import { ROUTES } from "@utils/routes";
-import AppLayout from "@components/layouts/app";
+import AppLayout from "@layouts/app";
 const AdminDashboard = dynamic(() => import("@components/dashboard/admin"));
 const OwnerDashboard = dynamic(() => import("@components/dashboard/owner"));
 
