@@ -8,6 +8,9 @@ __node_modules
 /vendor
 _vendor
 .env.backup
+.env.stage
+.env.dev
+.env.prod
 .phpunit.result.cache
 Homestead.json
 Homestead.yaml
@@ -17,14 +20,9 @@ _backend-api
 _frontend-vue
 nuxt-typescript-vuetify
 
-
-
-
 /docker-compose.stage.yml
 
 /doc.txt
-
-
 
 #### DOCKER
 .docker/workspace-frontend
@@ -44,6 +42,9 @@ nuxt-typescript-vuetify
 .docker/logs/sqlite
 !.docker/logs/sqlite/.gitkeep
 
+.docker/logs/nginx
+!.docker/logs/nginx/.gitkeep
+
 .docker/data/redis
 !.docker/data/redis/.gitkeep
 
@@ -55,3 +56,4 @@ nuxt-typescript-vuetify
 
 .docker/data/sqlite
 !.docker/data/sqlite/.gitkeep
+
