@@ -1,8 +1,8 @@
 import { useState } from "react";
 import Alert from "@components/ui/alert";
-import { useForgetPasswordMutation } from "@data/user/use-forget-password.mutation";
-import { useVerifyForgetPasswordTokenMutation } from "@data/user/use-verify-forget-password-token.mutation";
-import { useResetPasswordMutation } from "@data/user/use-reset-password.mutation";
+import { useForgetPasswordMutation } from "@services/user/use-forget-password.mutation";
+import { useVerifyForgetPasswordTokenMutation } from "@services/user/use-verify-forget-password-token.mutation";
+import { useResetPasswordMutation } from "@services/user/use-reset-password.mutation";
 import dynamic from "next/dynamic";
 import Router from "next/router";
 import { useTranslation } from "next-i18next";

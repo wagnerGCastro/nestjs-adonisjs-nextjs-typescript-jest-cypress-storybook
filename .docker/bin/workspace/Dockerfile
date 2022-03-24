@@ -123,4 +123,6 @@ EXPOSE 22
 
 WORKDIR /var/www
 
+ENV HOST 0.0.0.0
+
 CMD    ["/usr/sbin/sshd", "-D"]
