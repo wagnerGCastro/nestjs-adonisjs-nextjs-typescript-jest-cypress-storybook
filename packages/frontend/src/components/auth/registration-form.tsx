@@ -12,7 +12,7 @@ import * as yup from "yup";
 import Link from "@components/ui/link";
 import { allowedRoles, hasAccess, setAuthCredentials } from "@utils/auth-utils";
 import { Permission } from "@ts-types/generated";
-import { useRegisterMutation } from "@data/user/use-register.mutation";
+import { useRegisterMutation } from "@services/user/use-register.mutation";
 
 type FormValues = {
   name: string;

@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { ROUTES } from "@utils/routes";
-import { useLoginMutation } from "@data/user/use-login.mutation";
+import { useLoginMutation } from "@services/user/use-login.mutation";
 import { useTranslation } from "next-i18next";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";

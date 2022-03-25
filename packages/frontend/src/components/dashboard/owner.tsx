@@ -2,8 +2,8 @@ import ErrorMessage from "@components/ui/error-message";
 import Loader from "@components/ui/loader/loader";
 import { useTranslation } from "next-i18next";
 import Image from "next/image";
-import { useMeQuery } from "@data/user/use-me.query";
-import ShopCard from "@components/shop/shop-card";
+import { useMeQuery } from "src/services/user/use-me.query";
+// import ShopCard from "@components/shop/shop-card";
 import NoShopSvg from "../../../public/no-shop.svg";
 
 export default function OwnerDashboard() {
@@ -19,12 +19,12 @@ export default function OwnerDashboard() {
           {t("common:sidebar-nav-item-my-shops")}
         </h1>
       </div>
-
+ 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 3xl:grid-cols-5 gap-5">
-        {data?.shops?.map((myShop: any, idx: number) => (
-          <ShopCard shop={myShop} key={idx} />
-        ))}
-      </div>
+        {/* {data?.shops?.map((myShop: any, idx: number) => (
+          // <ShopCard shop={myShop} key={idx} />
+        ))} */}
+      </div> 
 
       {!data?.managed_shop && !data?.shops?.length ? (
         <div className="w-full flex flex-col items-center p-10">
@@ -43,7 +43,7 @@ export default function OwnerDashboard() {
       ) : null}
       {!!data?.managed_shop ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 3xl:grid-cols-5 gap-5">
-          <ShopCard shop={data?.managed_shop} />
+          {/* <ShopCard shop={data?.managed_shop} /> */}
         </div>
       ) : null}
     </>

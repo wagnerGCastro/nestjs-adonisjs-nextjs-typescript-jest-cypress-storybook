@@ -12,7 +12,7 @@ import { ToastContainer } from "react-toastify";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { Hydrate } from "react-query/hydration";
 import { useRef } from "react";
-import { useSettingsQuery } from "@data/settings/use-settings.query";
+import { useSettingsQuery } from "../services/settings/use-settings.query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { appWithTranslation } from "next-i18next";
 import { ModalProvider } from "@components/ui/modal/modal.context";
@@ -36,6 +36,7 @@ const CustomApp = ({ Component, pageProps }: AppProps) => {
   }
   const Layout = (Component as any).Layout || Noop;
   const authProps = (Component as any).authenticate;
+
 
   return (
     <QueryClientProvider client={queryClientRef.current}>
