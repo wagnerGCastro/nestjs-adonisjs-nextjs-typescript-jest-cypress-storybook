@@ -19,7 +19,7 @@ export default class CustomDocument extends Document {
 
     const dir = locale === "ar" || locale === "he" ? "rtl" : "ltr";
     if (process.env.NODE_ENV !== "production") {
-      i18n!.reloadResources(locale);
+      // i18n!.reloadResources(locale);
     }
 
     return (

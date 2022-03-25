@@ -33,6 +33,7 @@ yarn-error.log*
 .env.test.local
 .env.production.local
 
+
 # vercel
 .vercel
 
@@ -44,3 +45,11 @@ __generated__
 # PWA
 workbox-*.js
 sw.js
+
+
+# sw stuff
+public/sw.js
+public/workbox-*.js
+
+# storybook
+storybook-static

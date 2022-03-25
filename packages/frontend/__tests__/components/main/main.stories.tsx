@@ -1,5 +1,5 @@
 import { Story, Meta } from "@storybook/react";
-import Main from "../../../src/components/main";
+import Main from "@/components/main";
 
 export default {
   title: "Main",
