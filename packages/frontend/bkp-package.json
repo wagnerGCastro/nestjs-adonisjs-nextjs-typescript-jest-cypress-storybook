@@ -17,7 +17,15 @@
     "test:ci": "jest --watchAll=false --runInBand",
     "test:coverage": "jest --coverage",
     "storybook": "start-storybook -s ./public -p 6006 -c .storybook",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "postinstall": "husky install",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "src/**/*": [
+      "yarn lint --fix",
+      "yarn test --findRelatedTests --bail"
+    ]
   },
   "dependencies": {
     "@fontsource/open-sans": "^4.5.0",
