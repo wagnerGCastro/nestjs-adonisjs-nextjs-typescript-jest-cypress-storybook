@@ -1,3 +1,95 @@
 {
-  "extends": ["next", "next/core-web-vitals"]
+  "env": {
+    "browser": true,
+    "es2020": true,
+    "node": true,
+    "jest": true
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    },
+    "import/extensions": [".js", ".jsx", ".ts", ".tsx"],
+    "import/parsers": {
+      "@typescript-eslint/parser": [".js", ".jsx", ".ts", ".tsx"]
+    },
+    "import/resolver": {
+      "node": {
+        "paths": ["src"],
+        "extensions": [".js", ".jsx", ".ts", ".tsx"],
+        "moduleDirectory": ["node_modules", "node_modules/@types", "src/*"]
+      },
+      "typescript": {
+        "directory": "./tsconfig.json"
+      },
+      "alias": {
+        "map": [["@", "./src"]]
+      }
+    }
+  },
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly",
+    "__DEV__": true,
+    "window": true,
+    "document": true
+  },
+  "extends": [
+    "airbnb",
+    "airbnb-typescript",
+    "airbnb-typescript-prettier",
+    "airbnb/hooks",
+    "eslint:recommended",
+    "plugin:jest/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:react/recommended",
+    "plugin:prettier/recommended",
+    "plugin:@next/next/recommended",
+    "plugin:@typescript-eslint/recommended",
+    // "plugin:@typescript-eslint/eslint-recommended",
+    "next", 
+    "next/core-web-vitals"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 12,
+    "sourceType": "module",
+    "project": "./tsconfig.json"
+  },
+  "plugins": ["react", "react-hooks", "@typescript-eslint", "import", "jest", "prettier", "jsx-a11y"],
+  "rules": {
+    "prettier/prettier": "error",
+    "react/prop-types": "off",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "react/react-in-jsx-scope": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "func-names": ["error", "as-needed", { "generators": "never" }],
+    "react/function-component-definition": "off",
+    "import/no-named-as-default": 0,
+    "react/jsx-props-no-spreading": "off",
+    "import/no-named-as-default-member": 0
+  },
+  "overrides": [
+    {
+      "files": ["**/*.ts", "**/*.tsx"], // Your TypeScript files extension
+
+      // As mentioned in the comments, you should extend TypeScript plugins here,
+      // instead of extending them outside the `overrides`.
+      // If you don't want to extend any rules, you don't need an `extends` attribute.
+      "extends": [
+        "plugin:@typescript-eslint/recommended",
+        "plugin:@typescript-eslint/recommended-requiring-type-checking"
+      ],
+      "parserOptions": {
+        "project": ["./tsconfig.json"] // Specify it only for TypeScript files
+      },
+      "rules": {
+        "@typescript-eslint/prefer-nullish-coalescing": "error"
+      }
+    }
+  ]
 }

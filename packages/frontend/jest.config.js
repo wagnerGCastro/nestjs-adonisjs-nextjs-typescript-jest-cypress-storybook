@@ -1,6 +1,7 @@
 module.exports = {
   collectCoverageFrom: [
-    "**/*.{ts,tsx}",
+    'src/**/*.ts(x)?',
+    "!**/stories.tsx",
     "!**/node_modules/**",
     "!**/.storybook/**",
     "!**/tests/**",
