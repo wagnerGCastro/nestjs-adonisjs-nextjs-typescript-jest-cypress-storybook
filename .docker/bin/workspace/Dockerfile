@@ -1,6 +1,6 @@
 
 FROM ubuntu:16.04
-LABEL maintainer="M2CRM - MICRO SERVICES"
+LABEL maintainer="WAGNER CASTRO - MICRO SERVICES"
 
 RUN DEBIAN_FRONTEND=noninteractive
 RUN apt-get clean && apt-get update && apt-get install -y locales
@@ -18,7 +18,7 @@ ENV TERM xterm
 #--------------------------------------------------------------------------
 #
 
-# Install "PHP Extentions", "libraries", "software"
+# Install "libraries", "software"
 RUN apt-get update && \
     apt-get install -y --allow-downgrades --allow-remove-essential \
       --allow-change-held-packages \
@@ -27,7 +27,20 @@ RUN apt-get update && \
       libedit-dev \
       libssl-dev \
       libxml2-dev \
+      libgtk2.0-0 \
+      libgtk-3-0 \
+      libgbm-dev \
+      libnotify-dev \
+      libgconf-2-4 \
+      libnss3 \
+      libxss1 \
+      libasound2 \
+      libxtst6 \
+      xauth \
+      xvfb \
       xz-utils \
+      zip \
+      unzip \
       git \
       curl \
       vim \

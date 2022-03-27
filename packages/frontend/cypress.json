@@ -1,0 +1,10 @@
+{
+  "video": false,
+  "baseUrl": "http://localhost:3011",
+  "fixturesFolder": "cypress/fixtures",
+  "integrationFolder": "cypress/e2e",
+  "pluginsFile": "cypress/plugins/index.ts",
+  "screenshotsFolder": "cypress/screenshots",
+  "supportFile": "cypress/support/index.ts",
+  "videosFolder": "cypress/videos"
+}
