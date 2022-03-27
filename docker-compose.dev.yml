@@ -31,7 +31,7 @@ services:
         - http_proxy
         - https_proxy
         - no_proxy
-    container_name: '003-nginx'
+    container_name: '002-nginx'
     volumes:
       - ${APP_CODE_PATH_HOST}:${APP_CODE_PATH_CONTAINER}${APP_CODE_CONTAINER_FLAG}
       - ${NGINX_HOST_LOG_PATH}:/var/log/nginx
