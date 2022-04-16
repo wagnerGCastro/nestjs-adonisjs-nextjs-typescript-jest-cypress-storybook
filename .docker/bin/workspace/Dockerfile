@@ -1,6 +1,6 @@
 
 FROM ubuntu:16.04
-LABEL maintainer="WAGNER CASTRO - MICRO SERVICES"
+LABEL maintainer="WAGNER G. CASTRO - WORKSPACE"
 
 RUN DEBIAN_FRONTEND=noninteractive
 RUN apt-get clean && apt-get update && apt-get install -y locales
