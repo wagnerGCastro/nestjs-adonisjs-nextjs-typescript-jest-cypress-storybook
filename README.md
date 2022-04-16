@@ -1,9 +1,9 @@
 ## Comands Initialiation APP
 
   # Hosts Docker Workspace
-    - 3009 # backend_nestjs   # http://localhost:3009
-    - 3010 # backend_adonis   # http://localhost:3010
-    - 3011 # frontend         # http://localhost:8041
+    - 3009 # backend_adonis   # http://localhost:3009
+    - 3010 # backend_nest     # http://localhost:3010
+    - 3011 # frontend         # http://localhost:8011
     - 3012 # ecommerce        # http://localhost:3012
 
 

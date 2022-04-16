@@ -1,7 +1,8 @@
 {
-  "name": "hello-world",
+  "name": "@packages/backend_adonis",
   "version": "1.0.0",
   "private": true,
+  "author": "Wagner G Castro",
   "scripts": {
     "dev": "node ace serve --watch",
     "build": "node ace build --production",
