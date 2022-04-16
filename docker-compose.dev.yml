@@ -1,15 +1,28 @@
 version: "3.7"
 
+networks:
+  frontend:
+    driver: ${NETWORKS_DRIVER}
+  backend:
+    driver: ${NETWORKS_DRIVER}
+
+volumes:
+  mysql:
+    driver: ${VOLUMES_DRIVER}
+  redis:
+    driver: ${VOLUMES_DRIVER}
+
+
 services:
   workspace:
     build:
       context: ./.docker/bin/workspace
       args:
         - NODE_VERSION=${WORKSPACE_NODE_VERSION}
-    container_name: '002-workspace'
     ports:
       - ${WORKSPACE_HTTP_PORT}:3032
       - ${WORKSPACE_SSH}:22
+      - ${APP_BACKEND_NESTJS_PORT}:3009 # backend_nestjs
       - ${APP_BACKEND_PORT}:3010 # backend
       - ${APP_FRONTEND_PORT}:3011 # frontend
       - ${APP_ECOMMERCE_PORT}:3012 # ecommerce
@@ -31,7 +44,6 @@ services:
         - http_proxy
         - https_proxy
         - no_proxy
-    container_name: '002-nginx'
     volumes:
       - ${APP_CODE_PATH_HOST}:${APP_CODE_PATH_CONTAINER}${APP_CODE_CONTAINER_FLAG}
       - ${NGINX_HOST_LOG_PATH}:/var/log/nginx
@@ -47,7 +59,6 @@ services:
 
   mysql:
     image: "mysql:8.0"
-    container_name: '002-mysql'
     restart: 'always'
     environment:
       MYSQL_ROOT_HOST: '%'
@@ -58,7 +69,7 @@ services:
     ports:
       - "${DB_PORT}:3306"
     volumes:
-      - "back02mysql:/var/lib/mysql"
+      - ${DATA_PATH_HOST}/mysql:/var/lib/mysql"
     healthcheck:
       test: ["CMD", "mysqladmin", "ping"]
     networks:
@@ -66,11 +77,10 @@ services:
 
   redis:
     image: "redis:alpine"
-    container_name: '002-redis'
     ports:
       - "${FORWARD_REDIS_PORT:-6379}:6379"
     volumes:
-        - "back02redis:/data"
+      - ${DATA_PATH_HOST}/redis:/data
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
     networks:
@@ -78,38 +88,8 @@ services:
 
   mailhog:
     image: "mailhog/mailhog:latest"
-    container_name: '002-mailhog'
     ports:
       - '${FORWARD_MAILHOG_PORT:-1025}:1025'
       - '${FORWARD_MAILHOG_DASHBOARD_PORT:-8025}:8025'
     networks:
       - backend
-
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin
-    container_name: '002-phpmyadmin'
-    links:
-      - mysql
-    environment:
-      PMA_HOST: mysql
-      PMA_PORT: "3306"
-    ports:
-      - '8080:80'
-    volumes:
-      - "back02phpmyadmin:/sessions"
-    networks:
-      - backend
-
-networks:
-  frontend:
-    driver: bridge
-  backend:
-    driver: bridge
-
-volumes:
-  back02mysql:
-    driver: local
-  back02redis:
-    driver: local
-  back02phpmyadmin:
-    driver: local
