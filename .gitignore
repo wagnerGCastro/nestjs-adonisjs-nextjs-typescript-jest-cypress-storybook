@@ -22,6 +22,7 @@ yarn-error.log
 _backend-api
 _frontend-vue
 nuxt-typescript-vuetify
+/package-bkp.json
 
 /docker-compose.stage.yml
 

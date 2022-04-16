@@ -1,13 +1,12 @@
 {
-  "name": "@packages/ecommerce_next",
+  "name": "@packages/ecommerce_nextjs",
   "version": "0.1.0",
   "private": true,
-  "author": "Wagner G Castro",
   "scripts": {
-    "dev": "next dev -p 3012",
+    "dev": "next dev -p 3041",
     "build": "next build",
     "build:static": "npm run build && next export -o build_static",
-    "start": "next start -p 3012",
+    "start": "next start -p 3041",
     "lint-all": "eslint ./src --max-warnings=0",
     "lint:watch": "esw ./src --max-warnings=0 --quiet --watch",
     "lint": "eslint ./src/components/** ./src/pages/** -c .eslintrc.json --ext js,jsx,ts,tsx",
@@ -19,7 +18,23 @@
     "test:ci": "jest --watchAll=false --runInBand",
     "test:coverage": "jest --coverage",
     "cy:open": "cypress open",
-    "cy:run": "cypress run"
+    "cy:run": "cypress run",
+    "prepare": "husky install",
+    "postinstall": "husky install"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "yarn prettier-format",
+      "yarn lint-all --fix",
+      "cross-env CI=true yarn test --findRelatedTests --bail"
+    ]
   },
   "dependencies": {
     "next": "11.1.2",
@@ -60,6 +75,7 @@
     "css-loader": "^4.2.0",
     "cypress": "^9.1.1",
     "cypress-plugin-stripe-elements": "^1.0.2",
+    "cz-conventional-changelog": "3.3.0",
     "enzyme": "^3.11.0",
     "eslint": "^8.5.0",
     "eslint-config-airbnb": "19.0.2",
@@ -88,5 +104,10 @@
     "style-loader": "^1.2.1",
     "ts-jest": "^26.1.4",
     "typescript": "^4.4.3"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
