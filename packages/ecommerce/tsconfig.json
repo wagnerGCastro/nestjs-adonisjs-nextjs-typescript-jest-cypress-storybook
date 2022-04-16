@@ -19,6 +19,6 @@
       "@/*": ["./*"]
     }
   },
-  "exclude": ["node_modules", "cypress"],
+  "exclude": ["_node_modules", "node_modules", "cypress"],
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.js", "**/*.jsx"]
 }
