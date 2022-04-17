@@ -6,9 +6,6 @@
     - 3011 # frontend         # http://localhost:8011
     - 3012 # ecommerce        # http://localhost:3012
 
-
-  # Backend Nestjs
-    $ cd ./packages/backend_nestjs && yarn isntall && yarn run start:dev
     
   # Docker
     - build
@@ -28,3 +25,11 @@
     - stop/start container
       $ docker-compose -f docker-compose.dev.yml --env-file .env.dev stop workspace
       $ docker-compose -f docker-compose.dev.yml --env-file .env.dev start workspace
+
+  # Start Apps
+    - obs: after getting inside the workspace container
+
+    $ cd ./packages/backend_adonis && yarn isntall && yarn dev
+    $ cd ./packages/backend_adonis && yarn isntall && yarn start:dev
+    $ cd ./packages/ecommerce && yarn isntall && yarn dev
+    $ cd ./packages/frontend && yarn isntall && yarn dev
