@@ -59,6 +59,10 @@ storybook-static
 .docker/logs/nginx
 !.docker/logs/nginx/.gitkeep
 
+.docker/logs/postgres
+!.docker/logs/postgres/.gitkeep
+
+# Data Docker
 .docker/data/redis
 !.docker/data/redis/.gitkeep
 
@@ -71,3 +75,5 @@ storybook-static
 .docker/data/sqlite
 !.docker/data/sqlite/.gitkeep
 
+.docker/data/postgres
+!.docker/data/postgres/.gitkeep
