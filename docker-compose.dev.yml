@@ -16,7 +16,7 @@ volumes:
 services:
   workspace:
     build:
-      context: ./.docker/bin/workspace
+      context: ${DOCKER_PATH_BIN}/workspace
       args:
         - NODE_VERSION=${WORKSPACE_NODE_VERSION}
     ports:
@@ -36,7 +36,7 @@ services:
 
   nginx:
     build:
-      context: ./.docker/bin/nginx
+      context: ${DOCKER_PATH_BIN}/nginx
       args:
         - CHANGE_SOURCE=${CHANGE_SOURCE}
         # - PHP_UPSTREAM_CONTAINER=${NGINX_PHP_UPSTREAM_CONTAINER}
@@ -69,29 +69,49 @@ services:
     ports:
       - "${DB_PORT}:3306"
     volumes:
-      - ${DATA_PATH_HOST}/mysql:/var/lib/mysql"
+      - ${DOCKER_PATH_DATA}/mysql:/var/lib/mysql"
     healthcheck:
       test: ["CMD", "mysqladmin", "ping"]
     networks:
       - backend
 
   postgres:
-    build: .docker/bin/postgres
+    build: ${DOCKER_PATH_BIN}/postgres
     tty: true
     ports:
       - "3340:5432"
     volumes:
-      - ${DATA_PATH_HOST}/postgres:/var/lib/postgresql/data
+      - ${DOCKER_PATH_DATA}/postgres:/var/lib/postgresql/data
+      - ${DOCKER_PATH_LOG}/postgres:/var/log/postgresql
     environment:
-      - POSTGRES_PASSWORD=docker
-      - POSTGRES_DB=postgres
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: postgres
+    networks:
+      - backend
+
+  pgadmin4:
+    image: "dpage/pgadmin4"
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: root
+    ports:
+      - "15434:80"
+    volumes:
+      - ${DOCKER_PATH_DATA}/pgadmin4:/var/lib/pgadmin
+      - ${DOCKER_PATH_LOG}/postgres:/var/log/postgresql
+    depends_on:
+      - postgres
+    networks:
+      - backend
 
   redis:
     image: "redis:alpine"
     ports:
       - "${FORWARD_REDIS_PORT:-6379}:6379"
     volumes:
-      - ${DATA_PATH_HOST}/redis:/data
+      - ${DOCKER_PATH_DATA}/redis:/data
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
     networks:
