@@ -1,5 +1,6 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { FindConditions, FindOneOptions } from 'typeorm';
 import { plainToClass } from 'class-transformer';
 import { CreateUserDto } from './dto/create-user.dto';
 import { GetUserDto, UserPaginator } from './dto/get-user.dto';
@@ -29,6 +30,17 @@ export class UserService {
     private readonly userRepository: UserRepository,
   ) {}
 
+  async findOneOrFail(
+    conditions: FindConditions<UserEntity>,
+    options?: FindOneOptions<UserEntity>,
+  ) {
+    try {
+      return await this.userRepository.findOneOrFail(conditions, options);
+    } catch (error) {
+      throw new NotFoundException(error.message);
+    }
+  }
+
   async findAll({ text, limit, page }: GetUserDto): Promise<UserPaginator> {
     if (!page) page = 1;
 
@@ -57,20 +69,21 @@ export class UserService {
   }
 
   async findById(id: number): Promise<UserEntity> {
-    return this.userRepository.findOne({ id });
+    return await this.findOneOrFail({ id });
   }
 
-  async store(data: CreateUserDto): Promise<UserEntity> {
-    return await this.userRepository.save(data);
+  async store(data: CreateUserDto) {
+    const user = this.userRepository.create(data);
+    return await this.userRepository.save(user);
   }
 
-  async update(id: number, data: UpdateUserDto): Promise<string> {
-    await this.userRepository.update(id, data);
-    return `This action update a #${id} user`;
+  async update(id: number, data: UpdateUserDto) {
+    await this.findOneOrFail({ id });
+    return await this.userRepository.update(id, data);
   }
 
   async destroy(id: number) {
-    await this.userRepository.delete(id);
-    return `This action remove a #${id} user`;
+    await this.findOneOrFail({ id });
+    this.userRepository.softDelete({ id });
   }
 }
