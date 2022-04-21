@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
 import { plainToClass } from 'class-transformer';
 import { CreateUserDto } from './dto/create-user.dto';
 import { GetUserDto, UserPaginator } from './dto/get-user.dto';
@@ -30,11 +29,7 @@ export class UserService {
     private readonly userRepository: UserRepository,
   ) {}
 
-  public create(data: CreateUserDto): Promise<UserEntity> {
-    return this.userRepository.save(data);
-  }
-
-  async getAll({ text, limit, page }: GetUserDto): Promise<any> {
+  public async getAll({ text, limit, page }: GetUserDto): Promise<UserPaginator> {
     if (!page) page = 1;
 
     const startIndex = (page - 1) * limit;
@@ -42,35 +37,38 @@ export class UserService {
 
     let data: UserEntity[] = await this.userRepository.find();
 
-    if (text?.replace(/%/g, '')) {
-      data = fuse.search(text)?.map(({ item }) => item);
+    if (limit) {
+      if (text?.replace(/%/g, '')) {
+        data = fuse.search(text)?.map(({ item }) => item);
+      }
+
+      const results = data.slice(startIndex, endIndex);
+      const url = `/users?limit=${limit}`;
+
+      return {
+        data: results,
+        ...paginate(data.length, page, limit, results.length, url),
+      };
     }
 
-    const results = data.slice(startIndex, endIndex);
-
-    const url = `/users?limit=${limit}`;
-
-    return {
-      data: results,
-      ...paginate(data.length, page, limit, results.length, url),
-    };
+    return { data };
   }
 
   public async findById(id: number): Promise<UserEntity> {
-    return this.userRepository.findOne({
-      email: 'wagner@wagner.com.br',
-    });
+    return this.userRepository.findOne({ id });
   }
 
-  findOne(id: number) {
-    return this.users.find((user) => user.id === id);
+  public create(data: CreateUserDto): Promise<UserEntity> {
+    return this.userRepository.save(data);
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return this.users[0];
+  public async update(id: number, data: UpdateUserDto): Promise<string> {
+    await this.userRepository.update(id, data);
+    return `This action update a #${id} user`;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} user`;
+  public async remove(id: number) {
+    await this.userRepository.delete(id);
+    return `This action remove a #${id} user`;
   }
 }
