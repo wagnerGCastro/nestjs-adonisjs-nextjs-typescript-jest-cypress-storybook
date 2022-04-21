@@ -9,7 +9,7 @@ const ormconfig: ConnectionOptions = {
   database: 'postgres',
   // synchronize: true,
   entities: [__dirname + '/../../api/**/*.entity.{js,ts}'],
-  migrations: ['src/database/migrations/**/*.ts'],
+  migrations: ['dist/database/migrations/**/*.js'],
   cli: {
     migrationsDir: 'src/database/migrations',
   },
