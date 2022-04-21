@@ -57,35 +57,3 @@ $ npm run test:e2e
 # test coverage
 $ npm run test:cov
 ```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
-
-=============================
-
-1. add staff may go under shop or a single module= single file
-2. contact should go under settings = contact module
-3. user active or ban exiting
-4. export import route
-5. order_status => order-status
-   <!-- 6. order_status / ut what -->
-   <!-- 7. refund-order what -->
-6. checkout/verify should go under orders/checkout/verify
-<!-- 9. tag link wrong -->
-7. shops=> all-shop
-8. shop status , approve, disapprove
-9. popular-products
-10. Can't define categories/fetch-parents
-11. shipping => shippings
-    field-resolvers
