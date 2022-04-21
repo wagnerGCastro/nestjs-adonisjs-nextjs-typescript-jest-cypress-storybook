@@ -8,7 +8,7 @@ import { UserEntity } from './user.entity';
 import { UserRepository } from './user.repository';
 import Fuse from 'fuse.js';
 
-import { paginate } from 'src/api/common/pagination/paginate';
+import { paginate } from 'src/app/common/pagination/paginate';
 import usersJson from './users.json';
 
 const users = plainToClass(UserEntity, usersJson);
@@ -29,13 +29,15 @@ export class UserService {
     private readonly userRepository: UserRepository,
   ) {}
 
-  public async getAll({ text, limit, page }: GetUserDto): Promise<UserPaginator> {
+  async findAll({ text, limit, page }: GetUserDto): Promise<UserPaginator> {
     if (!page) page = 1;
 
     const startIndex = (page - 1) * limit;
     const endIndex = page * limit;
 
-    let data: UserEntity[] = await this.userRepository.find();
+    let data: UserEntity[] = await this.userRepository.find({
+      select: ['id', 'fullname', 'email', 'status'],
+    });
 
     if (limit) {
       if (text?.replace(/%/g, '')) {
@@ -54,20 +56,20 @@ export class UserService {
     return { data };
   }
 
-  public async findById(id: number): Promise<UserEntity> {
+  async findById(id: number): Promise<UserEntity> {
     return this.userRepository.findOne({ id });
   }
 
-  public create(data: CreateUserDto): Promise<UserEntity> {
-    return this.userRepository.save(data);
+  async store(data: CreateUserDto): Promise<UserEntity> {
+    return await this.userRepository.save(data);
   }
 
-  public async update(id: number, data: UpdateUserDto): Promise<string> {
+  async update(id: number, data: UpdateUserDto): Promise<string> {
     await this.userRepository.update(id, data);
     return `This action update a #${id} user`;
   }
 
-  public async remove(id: number) {
+  async destroy(id: number) {
     await this.userRepository.delete(id);
     return `This action remove a #${id} user`;
   }
