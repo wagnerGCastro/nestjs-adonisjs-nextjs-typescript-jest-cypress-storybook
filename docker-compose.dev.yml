@@ -84,7 +84,7 @@ services:
       - ${DOCKER_PATH_DATA}/postgres:/var/lib/postgresql/data
       - ${DOCKER_PATH_LOG}/postgres:/var/log/postgresql
     environment:
-      POSTGRES_USER: ${DB_POSTGRES_PORT}
+      POSTGRES_USER: ${DB_POSTGRES_USERNAME}
       POSTGRES_PASSWORD: ${DB_POSTGRES_PASSWORD}
       POSTGRES_DB: ${DB_POSTGRES_DATABASE}
     networks:
