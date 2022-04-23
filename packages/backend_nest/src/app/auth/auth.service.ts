@@ -41,4 +41,9 @@ export class AuthService {
 
     return user;
   }
+
+  async register(data) {
+    // const user = this.userRepository.create(data);
+    // return await this.userRepository.save(user);
+  }
 }
