@@ -4,7 +4,7 @@ import { UserEntity } from 'src/app/user/user.entity';
 
 import { messagesHelper, regexPassdHelper } from 'src/utils/helpers';
 
-export class RegisterDto extends PickType(UserEntity, ['fullname', 'email', 'password']) {
+export class RegisterDto extends PickType(UserEntity, ['first_name', 'email', 'password']) {
   @ApiProperty({ description: 'User full name' })
   @IsString()
   @IsNotEmpty()

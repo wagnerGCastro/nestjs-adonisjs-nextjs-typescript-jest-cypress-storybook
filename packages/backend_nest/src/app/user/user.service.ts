@@ -48,7 +48,7 @@ export class UserService {
     const endIndex = page * limit;
 
     let data: UserEntity[] = await this.userRepository.find({
-      select: ['id', 'fullname', 'email', 'status'],
+      select: ['id', 'first_name', 'last_name', 'email', 'status'],
     });
 
     if (limit) {
