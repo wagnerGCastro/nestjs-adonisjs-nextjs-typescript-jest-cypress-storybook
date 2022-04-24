@@ -7,16 +7,16 @@ export class CoreEntity {
   @ApiProperty()
   id: number;
 
-  @Column()
+  @Column({ type: 'integer', default: 0 })
   @ApiProperty()
   status: number;
 
-  @Column()
+  @Column({ type: 'timestamp', default: 'CURRENT_TIMESTAMP' })
   @ApiProperty()
   @Type(() => Date)
   created_at: Date;
 
-  @Column()
+  @Column({ type: 'timestamp', default: 'CURRENT_TIMESTAMP' })
   @ApiProperty()
   @Type(() => Date)
   updated_at: Date;

@@ -3,16 +3,18 @@ import { AuthResponse, LoginDto } from './dto/create-auth.dto';
 import { UserEntity } from 'src/app/user/user.entity';
 import { UserService } from 'src/app/user/user.service';
 import { compareSync } from 'bcrypt';
+import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class AuthService {
-  constructor(private readonly userService: UserService) {}
+  constructor(private readonly userService: UserService, private readonly jwtService: JwtService) {}
 
-  async login(data: LoginDto): Promise<AuthResponse> {
-    console.log(data);
+  async login(user: LoginDto) {
+    console.log(user);
+    const payload = { sub: user.id, email: user.email, fullname: user.fullname };
+
     return {
-      token: 'jwt token',
-      permissions: ['super_admin', 'customer'],
+      token: this.jwtService.sign(payload),
     };
   }
 
