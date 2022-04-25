@@ -7,7 +7,7 @@ export class CreateUsersSeed1650744093175 implements MigrationInterface {
     const userRepository = manager.getRepository(UserEntity);
 
     const user = new UserEntity();
-    user.first_name = 'Waagner';
+    user.first_name = 'Wagner';
     user.last_name = 'Castro';
     user.email = 'wagner@wagner.com.br';
     user.password = 'password';
