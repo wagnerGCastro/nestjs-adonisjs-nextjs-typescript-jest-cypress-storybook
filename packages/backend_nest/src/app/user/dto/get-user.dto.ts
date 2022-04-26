@@ -1,5 +1,5 @@
-import { SortOrder } from 'src/api/common/dto/generic-conditions.dto';
-import { PaginationArgs } from 'src/api/common/dto/pagination-args.dto';
+import { SortOrder } from 'src/app/common/dto/generic-conditions.dto';
+import { PaginationArgs } from 'src/app/common/dto/pagination-args.dto';
 
 import { UserEntity } from '../user.entity';
 

@@ -90,7 +90,7 @@ RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.1/install.sh
     if [ ${NPM_REGISTRY} ]; then \
     npm config set registry ${NPM_REGISTRY} \
     ;fi && \
-    npm install -g gulp yarn webpack
+    npm install -g gulp yarn webpack @nestjs/cli
 # Wouldn't execute when added to the RUN statement in the above block
 # Source NVM when loading bash since ~/.profile isn't loaded on non-login shell
 RUN if true; then \
