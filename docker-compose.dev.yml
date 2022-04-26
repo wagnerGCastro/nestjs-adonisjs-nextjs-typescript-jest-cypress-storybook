@@ -12,7 +12,6 @@ volumes:
   redis:
     driver: ${VOLUMES_DRIVER}
 
-
 services:
   workspace:
     build:
@@ -89,6 +88,16 @@ services:
       POSTGRES_DB: ${DB_POSTGRES_DATABASE}
     networks:
       - backend
+
+  backend_nest:
+    build:
+      context: .
+      dockerfile: ./.docker/bin/backend-nest/Dockerfile 
+      target: backend-nest-development
+    networks:
+      - backend
+    ports:
+    - 3010:3010
 
   pgadmin4:
     image: "dpage/pgadmin4"
