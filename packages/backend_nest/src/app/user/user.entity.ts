@@ -1,5 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { Column, Entity } from 'typeorm';
+import { Column, Entity, BeforeInsert } from 'typeorm';
+import { hashSync } from 'bcrypt';
 
 import { CoreEntity } from 'src/app/common/entities/core.entity';
 
@@ -20,4 +21,9 @@ export class UserEntity extends CoreEntity {
   @Column()
   @ApiProperty()
   status: number;
+
+  @BeforeInsert()
+  hashPassword() {
+    this.password = hashSync(this.password, 10);
+  }
 }

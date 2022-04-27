@@ -1,6 +1,8 @@
 import { PickType, ApiProperty } from '@nestjs/swagger';
 import { UserEntity } from '../user.entity';
-import { IsNumber, IsEmail, IsNotEmpty, IsString } from 'class-validator';
+import { IsNumber, IsEmail, IsNotEmpty, IsString, Matches } from 'class-validator';
+
+import { messagesHelper, regexPassdHelper } from 'src/utils/helpers';
 
 export class CreateUserDto extends PickType(UserEntity, [
   'fullname',
@@ -20,6 +22,7 @@ export class CreateUserDto extends PickType(UserEntity, [
 
   @ApiProperty({ description: 'User password' })
   @IsNotEmpty()
+  @Matches(regexPassdHelper, { message: messagesHelper.PASSWORD_VALID })
   password: string;
 
   @ApiProperty({
