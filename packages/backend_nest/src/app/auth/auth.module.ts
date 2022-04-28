@@ -4,8 +4,8 @@ import { JwtModule } from '@nestjs/jwt';
 import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
 import { UserModule } from 'src/app/user/user.module';
-
 import { LocalStrategy } from './strategies/local.strategy';
+import { JwtStrategy } from './strategies/jwt.strategy';
 import { API_JWT_SECRET_KEY, API_JWT_EXPIRES_IN } from 'src/config/constants';
 
 @Module({
@@ -18,6 +18,6 @@ import { API_JWT_SECRET_KEY, API_JWT_EXPIRES_IN } from 'src/config/constants';
     }),
   ],
   controllers: [AuthController],
-  providers: [AuthService, LocalStrategy],
+  providers: [AuthService, LocalStrategy, JwtStrategy],
 })
 export class AuthModule {}
