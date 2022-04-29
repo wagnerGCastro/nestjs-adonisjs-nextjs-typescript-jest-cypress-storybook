@@ -8,7 +8,11 @@ import { CoreEntity } from 'src/app/common/entities/core.entity';
 export class UserEntity extends CoreEntity {
   @Column()
   @ApiProperty()
-  fullname: string;
+  first_name: string;
+
+  @Column()
+  @ApiProperty()
+  last_name: string;
 
   @Column()
   @ApiProperty()

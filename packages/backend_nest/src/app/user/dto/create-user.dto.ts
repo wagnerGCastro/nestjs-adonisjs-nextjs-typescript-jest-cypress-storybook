@@ -5,15 +5,21 @@ import { IsNumber, IsEmail, IsNotEmpty, IsString, Matches } from 'class-validato
 import { messagesHelper, regexPassdHelper } from 'src/utils/helpers';
 
 export class CreateUserDto extends PickType(UserEntity, [
-  'fullname',
+  'first_name',
+  'last_name',
   'email',
   'password',
   'status',
 ]) {
-  @ApiProperty({ description: 'User full name' })
+  @ApiProperty({ description: 'User First Name' })
   @IsString()
   @IsNotEmpty()
-  fullname: string;
+  first_name: string;
+
+  @ApiProperty({ description: 'User Last Name' })
+  @IsString()
+  @IsNotEmpty()
+  last_name: string;
 
   @ApiProperty({ description: 'User email' })
   @IsEmail()
