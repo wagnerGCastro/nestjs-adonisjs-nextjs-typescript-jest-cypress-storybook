@@ -5,8 +5,8 @@ COPY ./packages/backend-nest/ ./app
 
 WORKDIR /app
 
-RUN npm install
-RUN npm run build
+RUN yarn install
+RUN yarn run build
 
 ENV HOST 0.0.0.0
 EXPOSE 3010
@@ -16,12 +16,12 @@ FROM common-build-stage as backend-nest-development
 
 ENV NODE_ENV development
 
-CMD ["npm", "run", "start"]
+CMD ["yarn", "run", "start"]
 
 # Production build stage
 FROM common-build-stage as backend-nest-production
 
 ENV NODE_ENV production
 
-CMD ["npm", "run", "start:prod"]
+CMD ["yarn", "run", "start:prod"]
 

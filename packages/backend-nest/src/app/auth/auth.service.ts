@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { AuthResponse, LoginDto } from './dto/create-auth.dto';
+import { LoginDto } from './dto/create-auth.dto';
 import { UserEntity } from 'src/app/user/user.entity';
 import { UserService } from 'src/app/user/user.service';
 import { compareSync } from 'bcrypt';
