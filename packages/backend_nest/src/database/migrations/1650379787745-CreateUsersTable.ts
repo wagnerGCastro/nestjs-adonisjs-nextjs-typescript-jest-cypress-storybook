@@ -17,8 +17,8 @@ export class CreateUsersTable1650379787745 implements MigrationInterface {
         { name: 'email', type: 'varchar', isUnique: true },
         { name: 'password', type: 'varchar' },
         { name: 'status', type: 'char', length: '1', default: 0 },
-        { name: 'created_at', type: 'timestamp', isNullable: true },
-        { name: 'updated_at', type: 'timestamp', isNullable: true },
+        { name: 'created_at', type: 'timestamp', default: 'CURRENT_TIMESTAMP' },
+        { name: 'updated_at', type: 'timestamp', default: 'CURRENT_TIMESTAMP' },
       ],
     });
 
