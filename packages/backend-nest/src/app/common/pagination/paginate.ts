@@ -64,10 +64,7 @@ export function paginate(
     first_page_url: `${APP_URL}${url}&page=1`,
     last_page_url: `${APP_URL}${url}&page=${totalPages}`,
     next_page_url:
-      totalPages > currentPage
-        ? `${APP_URL}${url}&page=${Number(currentPage) + 1}`
-        : null,
-    prev_page_url:
-      totalPages > currentPage ? `${APP_URL}${url}&page=${currentPage}` : null,
+      totalPages > currentPage ? `${APP_URL}${url}&page=${Number(currentPage) + 1}` : null,
+    prev_page_url: totalPages > currentPage ? `${APP_URL}${url}&page=${currentPage}` : null,
   };
 }
