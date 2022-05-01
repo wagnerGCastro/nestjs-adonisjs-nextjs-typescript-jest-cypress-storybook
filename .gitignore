@@ -23,11 +23,11 @@ _backend-api
 _frontend-vue
 nuxt-typescript-vuetify
 /package-bkp.json
-
 /docker-compose.stage.yml
-
 /doc.txt
 doc.txt
+dist
+build
 
 
 # sw stuff

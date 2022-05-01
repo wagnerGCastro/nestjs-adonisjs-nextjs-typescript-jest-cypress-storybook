@@ -1,12 +1,14 @@
 ## Comands Initialiation APP
 
-  # Hosts Docker Workspace
-    - 3009 # backend_adonis   # http://localhost:3009
-    - 3010 # backend_nest     # http://localhost:3010
+  # Hosts Docker Workspace Development
+    - 3009 # backend-adonis   # http://localhost:3009
+    - 3010 # backend-nest     # http://localhost:3010
     - 3011 # frontend         # http://localhost:8011
     - 3012 # ecommerce        # http://localhost:3012
 
-    
+  # Hosts Docker Build Server Nginx Development
+    - 3010 # backend-nest     # http://backend-nest.local:3010
+
   # Docker
     - build
       $ docker-compose build workspace
@@ -29,7 +31,7 @@
   # Start Apps
     - obs: after getting inside the workspace container
 
-    $ cd ./packages/backend_adonis && yarn isntall && yarn dev
-    $ cd ./packages/backend_adonis && yarn isntall && yarn start:dev
-    $ cd ./packages/ecommerce && yarn isntall && yarn dev
-    $ cd ./packages/frontend && yarn isntall && yarn dev
+    $ cd packages/backend-adonis && yarn isntall && yarn dev
+    $ cd packages/backend-nest && yarn isntall && yarn start:dev
+    $ cd packages/ecommerce && yarn isntall && yarn dev
+    $ cd packages/frontend && yarn isntall && yarn dev

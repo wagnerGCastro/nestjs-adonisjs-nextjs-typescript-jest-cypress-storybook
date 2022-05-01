@@ -1,2 +1,7 @@
 *.conf
+<<<<<<< Updated upstream
 !default.conf
+=======
+!default.conf
+!backend-nest.conf
+>>>>>>> Stashed changes
