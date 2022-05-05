@@ -22,6 +22,10 @@ export class UserEntity extends CoreEntity {
   @ApiProperty()
   password: string;
 
+  @Column()
+  @ApiProperty()
+  role?: string;
+
   @BeforeInsert()
   hashPassword() {
     this.password = hashSync(this.password, 10);

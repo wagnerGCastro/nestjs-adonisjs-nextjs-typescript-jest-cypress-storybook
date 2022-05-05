@@ -10,7 +10,7 @@ import { UserRepository } from './user.repository';
 import Fuse from 'fuse.js';
 
 import { paginate } from 'src/app/common/pagination/paginate';
-import usersJson from './users.json';
+import usersJson from 'src/utils/data/fakers/users.json';
 
 const users = plainToClass(UserEntity, usersJson);
 
