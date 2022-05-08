@@ -22,9 +22,9 @@ export class UserEntity extends CoreEntity {
   @ApiProperty()
   password: string;
 
-  @Column()
-  @ApiProperty()
-  role?: string;
+  // @Column()
+  // @ApiProperty()
+  // role?: string;
 
   @BeforeInsert()
   hashPassword() {
